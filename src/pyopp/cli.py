@@ -1,6 +1,6 @@
 import argparse
 
-from .main import print_data
+from .main import pretty_print
 
 parser = argparse.ArgumentParser(description="Pretty print HTML, XML, or JSON strings.")
 parser.add_argument("string", help="a string of HTML, XML, or JSON")
@@ -11,4 +11,4 @@ def main():
 
     string = args.string
 
-    print_data(string)
+    pretty_print(string)

@@ -1,11 +1,9 @@
 import json
-import os
 import pprint
 from typing import cast
 from xml.etree import ElementTree
 
 import pygments
-from ipdb import set_trace
 from pygments.formatters import Terminal256Formatter
 
 from .enums import Language
