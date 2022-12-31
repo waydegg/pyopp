@@ -28,11 +28,14 @@ classifiers = [
   "Topic :: Software Development :: Libraries :: Python Modules",
   "Topic :: Internet",
 ]
-dependencies = []
+dependencies = ["pygments~=2.13.0"]
 
 [project.urls]
 Homepage = "https://github.com/waydegg/pyopp"
 Source = "https://github.com/waydegg/pyopp"
+
+[project.scripts]
+pyopp = "pyopp.cli:main"
 
 [tool.hatch.build]
 only-packages = true

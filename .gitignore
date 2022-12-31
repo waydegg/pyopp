@@ -2,3 +2,4 @@ dist
 venv
 .env
 __pycache__
+.scratch
