@@ -1,3 +1,3 @@
-from .main import pretty_print
+from .main import opp
 
-__all__ = ["pretty_print"]
+__all__ = ["opp"]

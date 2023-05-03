@@ -1,26 +1,32 @@
-import json
-import pprint
 from typing import cast
 from xml.etree import ElementTree
 
-import pygments
-from pygments.formatters import Terminal256Formatter
+import rich
+from rich.console import Console
+from rich.json import JSON
+from rich.theme import Theme
 
 from .enums import Language
-from .utils import get_language, get_lexer, get_style, get_xml_namespace
+from .highlighter import xml_highlighter
+from .utils import get_language, get_xml_namespace
 
-
-def prettify_object(data: object):
-    object_str = pprint.pformat(data, indent=1, width=88)
-
-    return object_str
-
-
-def prettify_json(data: str):
-    json_obj = json.loads(data)
-    json_str = json.dumps(json_obj, indent=2)
-
-    return json_str
+theme = Theme(
+    {
+        ### JSON
+        "json.null": "bold purple",
+        "json.bool_true": "bold cyan",
+        "json.bool_false": "bold bright_red",
+        ### XML
+        "xml.tag": "bold blue",
+        "xml.attribute_name": "cyan",
+        "xml.attribute_value": "green",
+        "xml.comment": "grey70",
+        "xml.doctype": "bold yellow",
+        "xml.processing_instruction": "italic magenta",
+        "xml.cdata": "italic red",
+    }
+)
+console = Console(theme=theme)
 
 
 def prettify_xml(data: str):
@@ -33,26 +39,17 @@ def prettify_xml(data: str):
     return element_str
 
 
-def prettify_html(data: str):
-    raise NotImplementedError()
-
-
-def pretty_print(data: str | object, highlight: bool = True, style: str | None = None):
+def opp(data: str | object):
     language = get_language(data)
     match language:
         case Language.PYTHON:
-            data_str = prettify_object(data)
+            rich.print(data)
         case Language.JSON:
-            data_str = prettify_json(cast(str, data))
+            # rich.print(JSON(cast(str, data)))
+            console.print(JSON(cast(str, data)))
         case Language.XML:
-            data_str = prettify_xml(cast(str, data))
+            pretty_xml = prettify_xml(cast(str, data))
+            highlighted_xml = xml_highlighter(pretty_xml)
+            console.print(highlighted_xml)
         case Language.HTML:
-            data_str = prettify_html(cast(str, data))
-
-    if highlight:
-        lexer = get_lexer(language)
-        style = style or get_style()
-        formatter = Terminal256Formatter(style=style)
-        data_str = pygments.highlight(data_str, lexer, formatter)
-
-    print(data_str)
+            raise NotImplementedError()
