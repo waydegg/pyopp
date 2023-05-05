@@ -7,7 +7,7 @@ Overpowered Python Print
 Print native Python objects or string representations of JSON, XML, or HTML. Output is
 validated, formatted, and highlighted with [Rich](https://github.com/Textualize/rich).
 
-![Object Example](https://github.com/waydegg/pyopp/raw/master/images/object.png)
+![Object Example](https://github.com/waydegg/pyopp/raw/master/images/python_object.png)
 
 ## Installation
 
