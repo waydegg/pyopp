@@ -1,7 +1,6 @@
 from typing import cast
 from xml.etree import ElementTree
 
-import rich
 from rich.console import Console
 from rich.json import JSON
 from rich.theme import Theme
@@ -12,6 +11,10 @@ from .utils import get_language, get_xml_namespace
 
 theme = Theme(
     {
+        ### PYTHON
+        "repr.bool_true": "bold cyan",
+        "repr.bool_false": "bold bright_red",
+        "repr.none": "bold grey23",
         ### JSON
         "json.null": "bold purple",
         "json.bool_true": "bold cyan",
@@ -43,9 +46,8 @@ def opp(data: str | object):
     language = get_language(data)
     match language:
         case Language.PYTHON:
-            rich.print(data)
+            console.print(data)
         case Language.JSON:
-            # rich.print(JSON(cast(str, data)))
             console.print(JSON(cast(str, data)))
         case Language.XML:
             pretty_xml = prettify_xml(cast(str, data))

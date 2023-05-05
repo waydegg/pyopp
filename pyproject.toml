@@ -4,8 +4,8 @@ build-backend = "hatchling.build"
 
 [project]
 name = "pyopp"
-version = "0.0.9"
-description = "P(Y)thon Over(P)owered Print"
+version = "0.0.10"
+description = "Overpowered Python Print"
 readme = "README.md"
 requires-python = ">=3.10.4"
 license = { text = 'MIT' }
@@ -36,6 +36,3 @@ Source = "https://github.com/waydegg/pyopp"
 
 [project.scripts]
 pyopp = "pyopp.cli:main"
-
-[tool.hatch.build]
-only-packages = true
