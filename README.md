@@ -23,4 +23,4 @@ pip install pyopp
 
 ### XML string
 
-![XML string](https://github.com/waydegg/pyopp/raw/master/images/xml_string.png)
+![XML string](https://github.com/waydegg/pyopp/raw/master/images/xml_example.png)
